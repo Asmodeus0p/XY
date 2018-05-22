@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.RegisterActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/register_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@mipmap/nim_actionbar_dark_back_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <EditText
+            android:id="@+id/register_phone"
+            android:layout_width="250dp"
+            android:hint="请输入您的手机号"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:id="@+id/register_Verification_Code_Edtext"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/register_phone"
+            android:layout_below="@+id/register_phone"
+            android:hint="请输入手机验证码"
+            android:textSize="12sp"
+            android:layout_alignLeft="@+id/register_phone" />
+
+        <TextView
+            android:id="@+id/register_Verification_Code"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/register_Verification_Code_Edtext"
+            android:background="@color/rou"
+            android:text="获取验证码"
+            android:layout_toRightOf="@+id/register_Verification_Code_Edtext" />
+
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/register_Determine"
+        android:background="@drawable/login_button"
+        android:layout_width="180dp"
+        android:text="确定"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/Lenghui"
+            android:text="温馨提示：未注册过艺线直播账号的手机号，我们将自动帮您注册账号，且代表您同意"
+            android:textSize="8sp" />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

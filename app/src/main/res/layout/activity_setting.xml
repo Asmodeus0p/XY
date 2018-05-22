@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.SettingActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+
+        <ImageView
+            android:id="@+id/setting_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/nim_actionbar_dark_back_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/setting"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Lenghui"></View>
+
+        <TextView
+            android:id="@+id/setting_Account_security"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/textview_color"
+            android:drawableRight="@mipmap/icon_right_arrow"
+            android:text="账号与安全"
+            android:textColor="@drawable/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Lenghui"></View>
+
+        <TextView
+            android:id="@+id/Scavenging_caching"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/textview_color"
+            android:drawableRight="@mipmap/icon_right_arrow"
+            android:text="清除缓存"
+            android:textColor="@drawable/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Lenghui"></View>
+
+        <TextView
+            android:id="@+id/setting_about"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/textview_color"
+            android:drawableRight="@mipmap/icon_right_arrow"
+            android:text="关于梦播"
+            android:textColor="@drawable/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Lenghui"></View>
+
+        <TextView
+            android:id="@+id/setting_Contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/textview_color"
+            android:drawableRight="@mipmap/icon_right_arrow"
+            android:text="联系我们"
+            android:textColor="@drawable/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Lenghui"></View>
+
+        <TextView
+            android:id="@+id/setting_Score_for_me"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/textview_color"
+            android:drawableRight="@mipmap/icon_right_arrow"
+            android:text="为我评分"
+            android:textColor="@drawable/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/Lenghui"></View>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+
+            android:id="@+id/setting_Sign_out"
+            android:drawableRight="@mipmap/icon_right_arrow"
+            android:gravity="center"
+            android:text="退出并更换账号"
+            android:textColor="@color/rou" />
+    </LinearLayout>
+
+</LinearLayout>

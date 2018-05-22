@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">梦播</string>
+    <string name="qita">其他登录方式</string>
+    <string name="lijizhuce">>立即注册</string>
+    <string name="setting">设置</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
