@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/asd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/popup_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@drawable/zhb_1"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="艺线"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/popup_x"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/popup_icon"
+            android:background="#444" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@+id/asd"
+        android:id="@+id/gift_Viewpager"
+
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+    </android.support.v4.view.ViewPager>
+
+    <RelativeLayout
+        android:layout_below="@+id/gift_Viewpager"
+        android:id="@+id/popup_gift"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/popup_g"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_media_gift" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/popup_g"
+            android:text="礼物"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/popup_recharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="充值"
+            android:textColor="#ff3333"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/popup_gift_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/left_tx_circle_color"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/popup_gift_send"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/right_tx_circle_color"
+                android:gravity="center"
+                android:text="赠送"
+                android:textColor="#fff"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

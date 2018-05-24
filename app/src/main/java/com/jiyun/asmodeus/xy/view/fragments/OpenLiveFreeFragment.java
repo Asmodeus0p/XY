@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -35,13 +33,10 @@ import com.jiyun.asmodeus.xy.model.entity.CreateRoomBean;
 import com.jiyun.asmodeus.xy.model.utils.SharedPreferencesUtils;
 import com.jiyun.asmodeus.xy.presenter.CreateRoomPresenter;
 import com.jiyun.asmodeus.xy.view.activity.OpenLiveActivity;
-import com.jiyun.asmodeus.xy.view.activity.SeeLiveActivity;
 import com.jiyun.asmodeus.xy.view.activity.StartLiveActivity;
 import com.jiyun.asmodeus.xy.view.adapter.PopuRecyAdapter;
 import com.jiyun.asmodeus.xy.view.base.BaseFragment;
-import com.tencent.rtmp.TXLivePushConfig;
 import com.tencent.rtmp.TXLivePusher;
-import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.ArrayList;
 
@@ -168,7 +163,7 @@ public class OpenLiveFreeFragment extends BaseFragment implements ICreateRoomCon
             integers.add(ass[i]);
         }
 
-        PopuRecyAdapter popuRecyAdapter = new PopuRecyAdapter(R.layout.popurecy_item, integers);
+        PopuRecyAdapter popuRecyAdapter = new PopuRecyAdapter(R.layout.meiyanpopurecy_item, integers);
         popu_recy.setAdapter(popuRecyAdapter);
         popuRecyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

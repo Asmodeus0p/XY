@@ -52,6 +52,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.facebook.fresco:fresco:0.12.0'
     // 导入腾讯云直播 SDK aar
     implementation(name: 'LiteAVSDK_Professional_4.6.4218', ext: 'aar')
     implementation files('libs/AMap3DMap_6.0.1_AMapNavi_6.0.1_AMapSearch_5.7.0_AMapLocation_3.8.0_20180309.jar')

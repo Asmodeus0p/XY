@@ -20,16 +20,18 @@ public class GiftPresenter implements IGiftContract.Presenter {
 
     @Override
     public void GetGift() {
-        model.getReMenBean(new MyNetworkCallback<GiftBean>() {
-            @Override
-            public void onError(String Message) {
+        model.getGiftBean1(
+                new MyNetworkCallback<GiftBean>() {
+                    @Override
+                    public void onError(String Message) {
 
-            }
+                    }
 
-            @Override
-            public void onSuccess(GiftBean data) {
-                view.showGift(data);
-            }
-        });
+                    @Override
+                    public void onSuccess(GiftBean data) {
+                        view.showGift(data);
+                    }
+                }
+        );
     }
 }
