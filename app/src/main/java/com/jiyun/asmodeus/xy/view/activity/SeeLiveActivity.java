@@ -5,52 +5,47 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jiyun.asmodeus.xy.R;
 import com.jiyun.asmodeus.xy.contract.IGiftContract;
 import com.jiyun.asmodeus.xy.model.entity.GiftBean;
+import com.jiyun.asmodeus.xy.model.entity.IMGift;
 import com.jiyun.asmodeus.xy.model.entity.RenqizhuboBean;
+import com.jiyun.asmodeus.xy.model.utils.LiveGiftUtil;
 import com.jiyun.asmodeus.xy.presenter.GiftPresenter;
 import com.jiyun.asmodeus.xy.view.adapter.GiftPopuAdapter;
 import com.jiyun.asmodeus.xy.view.adapter.PoPuGridAdapter;
 import com.jiyun.asmodeus.xy.view.base.BaseActivity;
-import com.jiyun.asmodeus.xy.view.fragments.GiftFragment;
 import com.tencent.rtmp.TXLivePlayer;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
 public class SeeLiveActivity extends BaseActivity implements IGiftContract.View, View.OnClickListener {
-    private CheckBox checkbox;
+
     @BindView(R.id.start_live_video_view)
     TXCloudVideoView startLiveVideoView;
+    @BindView(R.id.giftconent)
+    LinearLayout giftconent;
     @BindView(R.id.start_live_icon)
     ImageView startLiveIcon;
     @BindView(R.id.start_live_nickname)
@@ -79,12 +74,13 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
     RelativeLayout startLiveActivity;
     private TXLivePlayer mLivePlayer;
     private ViewPager gift_viewpager;
-    private TabLayout gift_tab;
+
     private TextView popup_gift_send;
     private TextView popup_recharge;
     private View lastView;
     private TextView popup_gift_count;
-
+    private GiftBean.DataBean.ListBean bean;
+    private RenqizhuboBean.DataBean.ListBean bean1;
 
     public static void start(Activity activity, RenqizhuboBean.DataBean.ListBean listBean) {
         Intent intent = new Intent(activity, SeeLiveActivity.class);
@@ -99,18 +95,18 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
 
     @Override
     protected void initData() {
-        RenqizhuboBean.DataBean.ListBean bean = (RenqizhuboBean.DataBean.ListBean) getIntent().getSerializableExtra("RenqizhuboBeanlistBean");
-        Glide.with(this).load(bean.getCover()).into(startLiveIcon);
-        startLiveNickname.setText(bean.getNickName());
-        startLiveOnLineCount.setText("在线人数：" + bean.getViewNum());
-        startLiveLiveNo.setText(String.valueOf(bean.getLiveId()));
+        bean1 = (RenqizhuboBean.DataBean.ListBean) getIntent().getSerializableExtra("RenqizhuboBeanlistBean");
+        Glide.with(this).load(bean1.getCover()).into(startLiveIcon);
+        startLiveNickname.setText(bean1.getNickName());
+        startLiveOnLineCount.setText("在线人数：" + bean1.getViewNum());
+        startLiveLiveNo.setText(String.valueOf(bean1.getLiveId()));
         startLiveSwitch.setVisibility(View.GONE);
         //创建 player 对象
         mLivePlayer = new TXLivePlayer(this);
 
         //关键 player 对象与界面 view
         mLivePlayer.setPlayerView(startLiveVideoView);
-        String flvUrl = bean.getHlsPullUrl();
+        String flvUrl = bean1.getHlsPullUrl();
         mLivePlayer.startPlay(flvUrl, TXLivePlayer.PLAY_TYPE_LIVE_FLV);
     }
 
@@ -129,7 +125,6 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.start_live_finish:
-
                 finish();
                 break;
             case R.id.start_live_music:
@@ -167,21 +162,21 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
 
 
         List<GiftBean.DataBean.ListBean> list = createRoomBean.getData().getList();
-        ArrayList<GiftBean.DataBean.ListBean> listBean1 = new ArrayList<>();
+        final ArrayList<GiftBean.DataBean.ListBean> listBean1 = new ArrayList<>();
         listBean1.add(list.get(0));
         listBean1.add(list.get(1));
         listBean1.add(list.get(2));
         listBean1.add(list.get(3));
         listBean1.add(list.get(4));
         listBean1.add(list.get(5));
-        ArrayList<GiftBean.DataBean.ListBean> listBean2 = new ArrayList<>();
+        final ArrayList<GiftBean.DataBean.ListBean> listBean2 = new ArrayList<>();
         listBean2.add(list.get(6));
         listBean2.add(list.get(7));
         listBean2.add(list.get(8));
         listBean2.add(list.get(9));
         listBean2.add(list.get(10));
         listBean2.add(list.get(11));
-        ArrayList<GiftBean.DataBean.ListBean> listBean3 = new ArrayList<>();
+        final ArrayList<GiftBean.DataBean.ListBean> listBean3 = new ArrayList<>();
         listBean3.add(list.get(12));
         listBean3.add(list.get(13));
         listBean3.add(list.get(14));
@@ -242,6 +237,7 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
 
             @Override
             public void setOnItemClick(View v, int position) {
+                bean =listBean1.get(position);
                 v.findViewById(R.id.checkbox).setBackgroundResource(R.drawable.gift_cheek);
                 if (lastView != null) {
                     lastView.findViewById(R.id.checkbox).setBackgroundResource(R.drawable.white);
@@ -253,6 +249,7 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
             @Override
             public void setOnItemClick(View v, int position) {
                 v.findViewById(R.id.checkbox).setBackgroundResource(R.drawable.gift_cheek);
+                bean =listBean2.get(position);
                 if (lastView != null) {
                     lastView.findViewById(R.id.checkbox).setBackgroundResource(R.drawable.white);
                 }
@@ -262,6 +259,7 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
         poPuGridAdapter3.setOnItem(new PoPuGridAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(View v, int position) {
+                bean =listBean3.get(position);
                 v.findViewById(R.id.checkbox).setBackgroundResource(R.drawable.gift_cheek);
                 if (lastView != null) {
                     lastView.findViewById(R.id.checkbox).setBackgroundResource(R.drawable.white);
@@ -302,6 +300,10 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
         switch (v.getId()) {
             case R.id.popup_gift_send:
 
+                IMGift imGift = initBean();
+                LiveGiftUtil liveGiftUtil = new LiveGiftUtil();
+                liveGiftUtil.showGift(imGift,giftconent,SeeLiveActivity.this);
+                liveGiftUtil .clearTiming(giftconent,SeeLiveActivity.this);
                 break;
             case R.id.popup_recharge:
 
@@ -323,6 +325,30 @@ public class SeeLiveActivity extends BaseActivity implements IGiftContract.View,
                 break;
         }
 
+    }
+
+    @NonNull
+    private IMGift initBean() {
+        IMGift imGift = new IMGift();
+        imGift.setMsgType(2);
+        imGift.setTs(2L);
+        IMGift.Data data = new IMGift.Data();
+        data.setGiftName(bean.getGiftName());
+        data.setGiftNo(1);
+        data.setGiftNum(Integer.parseInt(popup_gift_count.getText().toString()));
+        data.setGiftPic(bean.getGiftPic());
+        IMGift.Data.SendUser sendUser = new IMGift.Data.SendUser();
+        sendUser.setNickName("王守懿说她的13香");
+        sendUser.setAvatar("https://www.baidu.com/link?url=xZ2OIzcWVoT12VzWCd6x0SbK_5N35m8MMXr_m0BaGRoo4MT9PQTidJtyXEiECevr2LR9XLSdHt30n7-216PmXDyfGZSFb-PNJpqcoAxCrLusPXqpBPUCGTYg7KfK_xd-Ab0pjuEzvQ4BVcNcAuomLvByBJXVfhuRYWJWsRHNWNRQYm8lrz1XUDR0lI9rUOgiCw2mIG_hV-o6PnI5w6ptqIb9slVcUtSAcQutVJp81tSMBsacWyW_T0Lurti7TUezbV9f0m2qmdOiOvnBkiQEhiprzCeHYYnqUt3V0tfBy78ZVXSWzlXONTH5KY6b7ILm4IyhZ5SlPOGAdKbebi65tcaoVSwipybzydOrC1OJpYXWQRgrP0cy4egPP9ucXJXLzMmEGcTSEnrVHuPH0fy2LYCtIMkZB7wws0IsOodMZfkwFLx_6obsyXy9LRPdYb1fVLclq1JrpLJ2cZMAJMpER_sJCttn9X_FuGj3StvOYDOe_fNrvbr0XcFU_xM0B934xwKuXH3lXTKVYfayajH4WCquou_nTtWHLhfzdIKmTEHKRguz9tvgoxNCSS0aF_xZ4DBAsLL_0dPLw-DACkFytq&wd=&eqid=e6f6fc4500005c25000000035b0621a4\");\n");
+        sendUser.setUserNo("qw");
+        data.setSendUser(sendUser);
+        IMGift.Data.ReceiveUser receiveUser = new IMGift.Data.ReceiveUser();
+        receiveUser.setAvatar(bean1.getAvatar());
+        receiveUser.setNickName(bean1.getName());
+        receiveUser.setUserNo(bean1.getUserNo());
+        data.setReceiveUser(receiveUser);
+        imGift.setData(data);
+        return imGift;
     }
 
 }
